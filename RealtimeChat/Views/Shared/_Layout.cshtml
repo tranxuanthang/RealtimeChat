@@ -71,7 +71,7 @@
                         {
                             loggedInUser = db.Users.Where(u => u.UserName == Context.User.Identity.Name).FirstOrDefault();
                         }
-                        <a class="navbar-item" href="/users/detail/@loggedInUser.UserID">
+                        <a class="navbar-item" href="/users/details/@loggedInUser.UserID">
                             @loggedInUser.ShowName
                         </a>
                         <a class="navbar-item" href="/sessions/logout">
