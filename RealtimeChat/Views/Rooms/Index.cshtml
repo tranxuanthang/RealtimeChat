@@ -1,0 +1,67 @@
+﻿@using RealtimeChat.Models
+@model List<Room>
+@{
+    ViewBag.Title = "Index";
+}
+
+<section class="hero is-light">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">
+                Your Joined Rooms
+            </h1>
+        </div>
+    </div>
+</section>
+
+@if (TempData["successMessage"] != null)
+{
+    <section class="section">
+        <div class="container">
+            <div class="notification is-success">
+                @TempData["successMessage"]
+            </div>
+        </div>
+    </section>
+}
+
+@if (TempData["dangerMessage"] != null)
+{
+    <section class="section">
+        <div class="container">
+            <div class="notification is-danger">
+                @TempData["dangerMessage"]
+            </div>
+        </div>
+    </section>
+}
+
+<section class="section">
+    <div class="container">
+        <div class="level">
+            <div class="level-left">
+            </div>
+            <div class="level-right">
+                <a class="level-item button is-light" href="/rooms/all">All room</a>
+                <a class="level-item button is-primary" href="/rooms/create">Create Room</a>
+            </div>
+        </div>
+        <table class="table is-fullwidth">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Room Name</th>
+                    <th>Show Name</th>
+                    <th>Description</th>
+                    <th class="th-actions">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Room room in Model)
+                {
+                    @Html.Partial("_RoomItem", room)
+                }
+            </tbody>
+        </table>
+    </div>
+</section>

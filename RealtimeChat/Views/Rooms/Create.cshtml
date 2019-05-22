@@ -1,0 +1,40 @@
+﻿@model RealtimeChat.ViewModels.RoomCreateViewModel
+@{
+    ViewBag.Title = "Create";
+}
+
+<section class="hero is-light">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">
+                Create a new room
+            </h1>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        @using (Html.BeginForm())
+        {
+            <div class="field">
+                @Html.LabelFor(m => m.RoomName, new { @class = "label" })
+                @Html.TextBoxFor(m => m.RoomName, new { @class = "input" })
+                <p class="help">@Html.ValidationMessageFor(m => m.RoomName)</p>
+            </div>
+            <div class="field">
+                @Html.LabelFor(m => m.ShowName, new { @class = "label" })
+                @Html.TextBoxFor(m => m.ShowName, new { @class = "input" })
+                <p class="help">@Html.ValidationMessageFor(m => m.ShowName)</p>
+            </div>
+            <div class="field">
+                @Html.LabelFor(m => m.Description, new { @class = "label" })
+                @Html.TextAreaFor(m => m.Description, new { @class = "textarea" })
+                <p class="help">@Html.ValidationMessageFor(m => m.Description)</p>
+            </div>
+            <div class="field">
+                <button class="button is-primary">Submit</button>
+            </div>
+        }
+    </div>
+</section>

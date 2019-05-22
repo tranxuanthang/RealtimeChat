@@ -1,0 +1,32 @@
+﻿.navbar-brand .navbar-item {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+#discussion li {
+    border-bottom: 1px solid #c3c3c3;
+    padding: 4px;
+}
+
+#discussion .show-name {
+    font-weight: bold;
+    margin-right: 6px;
+}
+
+#discussion .user-name {
+    font-size: small;
+    color: #6b6b6b;
+}
+
+table .button-group {
+    display: flex;
+    justify-content: center;
+}
+
+table .th-actions {
+    text-align: center;
+}
+
+table .button-group a,button:not(:last-child) {
+    margin-right: 4px;
+}

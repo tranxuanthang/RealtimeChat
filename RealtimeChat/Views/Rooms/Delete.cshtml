@@ -1,0 +1,33 @@
+﻿@using RealtimeChat.Models
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<section class="hero is-light">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">
+                @Model.RoomName
+            </h1>
+            <h2 class="subtitle">
+                Delete
+            </h2>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="content">
+            <p>Do you really want to delete this room?</p>
+            <div class="level">
+                @using (Html.BeginForm("Delete", "Rooms", new { id = Model.RoomID }, FormMethod.Post, new { @class = "level-left" }))
+                {
+                    <button class="button is-danger level-item">Delete</button>
+                    <a href="/rooms" class="button is-light level-item">Go back</a>
+                }
+            </div>
+        </div>
+    </div>
+</section>

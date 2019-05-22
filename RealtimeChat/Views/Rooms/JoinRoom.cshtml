@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "JoinRoom";
+}
+
+<section class="hero is-light">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">
+                Join room
+            </h1>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        @Html.ValidationSummary(false, "", new { @class = "is-danger" })
+    </div>
+    <div class="container">
+        @Html.ActionLink("Go back", "All", "Rooms")
+    </div>
+</section>

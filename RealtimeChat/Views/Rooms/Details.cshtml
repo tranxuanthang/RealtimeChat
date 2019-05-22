@@ -1,0 +1,65 @@
+﻿@using RealtimeChat.ViewModels
+@model RoomDetailsViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+<section class="hero is-light">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">
+                @Model.CurrentRoom.RoomName
+            </h1>
+            <h2 class="subtitle">
+                Details
+            </h2>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container is-fullwidth">
+        <div class="columns">
+            <div class="column is-two-fifths">
+                <h2 class="subtitle">
+                    Room details
+                </h2>
+                <table class="table">
+                    <tr>
+                        <td>Room Name</td>
+                        <td>@Model.CurrentRoom.RoomName</td>
+                    </tr>
+                    <tr>
+                        <td>Show Name</td>
+                        <td>@Model.CurrentRoom.ShowName</td>
+                    </tr>
+                    <tr>
+                        <td>Description</td>
+                        <td>@Model.CurrentRoom.RoomDescription</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="column is-two-thirds">
+                <h2 class="subtitle">
+                    Room members
+                </h2>
+                <table class="table is-fullwidth">
+                    <thead>
+                        <tr>
+                            <th>User ID</th>
+                            <th>User Name</th>
+                            <th>Show Name</th>
+                            <th>Member Level</th>
+                        </tr>
+                    </thead>
+                    @foreach (var member in Model.RoomMembers)
+                    {
+                        <tr><td>@member.User.UserID</td><td>@member.User.UserName</td><td>@member.User.ShowName</td><td>@member.MemberLevel</td></tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+</section>

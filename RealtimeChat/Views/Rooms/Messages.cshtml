@@ -1,0 +1,72 @@
+﻿@using RealtimeChat.Models
+@model Room
+@{
+    ViewBag.Title = "Messages";
+}
+
+<section class="hero is-light">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">
+                @Model.ShowName
+            </h1>
+            <h2 class="subtitle">
+                Messages
+            </h2>
+        </div>
+    </div>
+</section>
+
+<section class="hero">
+    <div class="hero-body">
+        <div class="container">
+            <form id="msg-send-form" class="form">
+                <div class="field">
+                    <label for="msg-input" class="label">Input message</label>
+                    <input type="text" id="msg-input" class="input" />
+                </div>
+                <div class="field">
+                    <button class="button">Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<section class="hero">
+    <div class="hero-body">
+        <div class="container">
+            <ul id="discussion"></ul>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript">
+    $(function () {
+        $('#msg-input').val('').focus();
+        $.connection.hub.qs = {
+            roomID: '@Model.RoomID'
+        };
+
+        var chat = $.connection.messagesHub;
+
+        chat.client.broadcastMessage = function (message) {
+            $('#discussion').prepend(`<li><div class="msg-head"><span class="show-name">${message.ShowName}</span><span class="user-name">@@${message.UserName}</span></div><div class="msg-content">${message.MessageText}</div></li>`);
+        };
+
+        chat.client.broadcastMessages = function (messages) {
+            messages.forEach(message => {
+                console.log(message);
+                $('#discussion').prepend(`<li><div class="msg-head"><span class="show-name">${message.ShowName}</span><span class="user-name">@@${message.UserName}</span></div><div class="msg-content">${message.MessageText}</div></li>`);
+            })
+        };
+
+        $.connection.hub.start().done(function () {
+            $('#msg-send-form').submit(function (e) {
+                e.preventDefault();
+                chat.server.send($('#msg-input').val());
+                $('#msg-input').val('').focus();
+            });
+        });
+    });
+</script>

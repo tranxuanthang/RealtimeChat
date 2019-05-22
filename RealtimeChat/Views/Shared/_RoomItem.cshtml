@@ -1,0 +1,43 @@
+﻿@using RealtimeChat.Models
+@model Room
+@{
+    User currentUser = (User)Context.Items["currentUser"];
+}
+<tr>
+    <td>@Model.RoomID</td>
+    <td><a href="/Rooms/Messages/@Model.RoomID">@Model.RoomName</a></td>
+    <td>@Model.ShowName</td>
+    <td>@Model.RoomDescription</td>
+    <td>
+        <div class="button-group">
+            @if (!Model.IsUserJoined(currentUser.UserID))
+            {
+                using (Html.BeginForm("JoinRoom", "Rooms"))
+                {
+                    @Html.Hidden("roomID", Model.RoomID);
+                    <button class="button is-primary">Join</button>
+                }
+            }
+            else
+            {
+                <a href="/rooms/details/@Model.RoomID" class="button is-light">Details</a>
+                using (var db = new RealtimeChatDB())
+                {
+                    RoomMember currentRooomMember = db.RoomMembers.Where(m => m.RoomID == Model.RoomID && m.UserID == currentUser.UserID).FirstOrDefault();
+                    if (currentRooomMember.MemberLevel == 2)
+                    {
+                        <a href="/rooms/details/@Model.RoomID" class="button is-light">Update</a>
+                        <a href="/rooms/delete/@Model.RoomID" class="button is-danger">Delete</a>
+                    }
+                    else
+                    {
+                        using (Html.BeginForm("LeaveRoom", "Rooms", new { id = Model.RoomID }))
+                        {
+                            <button class="button is-danger">Leave</button>
+                        }
+                    }
+                }
+            }
+        </div>
+    </td>
+</tr>
