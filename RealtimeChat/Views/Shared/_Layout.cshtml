@@ -31,24 +31,29 @@
                     <a class="navbar-item" href="/">
                         Home
                     </a>
-                    <div class="navbar-item has-dropdown is-hoverable">
-                        <a href="/rooms" class="navbar-link">
-                            Rooms
-                        </a>
-                        <div class="navbar-dropdown">
-                            <a href="/rooms" class="navbar-item">
-                                Your joined rooms
+
+                    @if (Context.User.Identity.IsAuthenticated == true)
+                    {
+                        <div class="navbar-item has-dropdown is-hoverable">
+                            <a href="/rooms" class="navbar-link">
+                                Rooms
                             </a>
-                            <a href="/rooms/all" class="navbar-item">
-                                All rooms
-                            </a>
-                            <hr class="navbar-divider">
-                            <a href="/rooms/create" class="navbar-item">
-                                Create a new room
-                            </a>
+                            <div class="navbar-dropdown">
+                                <a href="/rooms" class="navbar-item">
+                                    Your joined rooms
+                                </a>
+                                <a href="/rooms/all" class="navbar-item">
+                                    All rooms
+                                </a>
+                                <hr class="navbar-divider">
+                                <a href="/rooms/create" class="navbar-item">
+                                    Create a new room
+                                </a>
+                            </div>
                         </div>
-                    </div>
+                    }
                 </div>
+
                 <div class="navbar-end">
                     @if (Context.User.Identity.IsAuthenticated == false)
                     {
