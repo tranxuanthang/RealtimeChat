@@ -40,8 +40,12 @@
                 <p class="help">@Html.ValidationMessageFor(m => m.UserPassword)</p>
             </div>
             <div class="field">
-                <button class="button is-primary">Login</button>
+                @Html.CheckBoxFor(m => m.RememberMe)
+                @Html.LabelFor(m => m.RememberMe)
             </div>
-        }
-    </div>
+                <div class="field">
+                    <button class="button is-primary">Login</button>
+                </div>
+                }
+            </div>
 </section>

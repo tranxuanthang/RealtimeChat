@@ -19,6 +19,8 @@ namespace RealtimeChat.ViewModels
         [Display(Name = "Password")]
         public string UserPassword { get; set; }
 
+        [Display(Name = "Remember Me")]
+
         public bool RememberMe { get; set; }
     }
 }
