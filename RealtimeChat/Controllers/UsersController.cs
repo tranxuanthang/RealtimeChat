@@ -35,6 +35,7 @@ namespace RealtimeChat.Controllers
                     newUser.UserPassword = registerInfo.UserPassword;
                     newUser.Email = registerInfo.Email;
                     newUser.ShowName = registerInfo.ShowName;
+                    newUser.CreatedAt = DateTime.Now;
                     db.Users.Add(newUser);
                     db.SaveChanges();
                     TempData["successMessage"] = "Signed up successfully. Please login.";
@@ -52,6 +53,40 @@ namespace RealtimeChat.Controllers
         {
             User currentUser = (User)HttpContext.Items["currentUser"];
             return View(currentUser);
+        }
+        [HasCurrentUser]
+        [HttpGet]
+        public ActionResult doimk()
+        {
+            User currentUser = (User)HttpContext.Items["currentUser"];//lay ng dung hien tai
+            return View();
+        }
+        [HasCurrentUser]
+        [HttpPost]
+        public ActionResult doimk(doimk doimk)
+        {
+            User currentUser = (User)HttpContext.Items["currentUser"];
+            var db = new RealtimeChatDB();
+            if (ModelState.IsValid)
+            {
+                if (currentUser.UserPassword == doimk.mkcu)
+                {
+                    var a = db.Users.Attach(currentUser);
+                    a.UserPassword = doimk.mkmoi;
+                    db.SaveChanges();
+                    TempData["ChangeInfoorPass"] = "Congratulations on Your Successful Password Exchange";
+                    return RedirectToAction("Details", "Users");
+                }
+                else
+                {
+                    ModelState.AddModelError("mkcu", "Wrong Old Password");
+                    return View();
+                }
+            }
+            else
+            {
+                return View();
+            }
         }
     }
 }

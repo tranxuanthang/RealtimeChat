@@ -1,0 +1,29 @@
+﻿@model RealtimeChat.ViewModels.doimk
+@{
+    ViewBag.Title = "doimk";
+}
+<section class="section">
+    <div class="container">
+        @using (Html.BeginForm())
+        {
+            <div class="field">
+                @Html.LabelFor(m => m.mkcu, new { @class = "label" })
+                @Html.TextBoxFor(m => m.mkcu, new { @class = "input" })
+                @Html.ValidationMessageFor(m => m.mkcu)
+            </div>
+            <div class="field">
+                @Html.LabelFor(m => m.mkmoi, new { @class = "label" })
+                @Html.TextBoxFor(m => m.mkmoi, new { @class = "input" })
+                @Html.ValidationMessageFor(m => m.mkmoi)
+            </div>
+            <div class="field">
+                @Html.LabelFor(m => m.xnmkmoi, new { @class = "label" })
+                @Html.TextBoxFor(m => m.xnmkmoi, new { @class = "input" })
+                @Html.ValidationMessageFor(m => m.xnmkmoi)
+            </div>
+            <div>
+                <button class="button is-primary">Xác Nhận</button>
+            </div>
+        }
+    </div>
+</section>
