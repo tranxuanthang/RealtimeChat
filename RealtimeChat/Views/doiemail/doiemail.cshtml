@@ -1,0 +1,26 @@
+﻿@model RealtimeChat.ViewModels.doiemail
+@{
+    ViewBag.Title = "doiemail";
+}
+
+<section class="section">
+    <div class="container">
+        @using (Html.BeginForm())
+
+        {
+            <div class="field">
+                @Html.LabelFor(m => m.emailmoi, new { @class = "label" })
+                @Html.TextBoxFor(m => m.emailmoi, new { @class = "input" })
+                @Html.ValidationMessageFor(m => m.emailmoi)
+            </div>
+            <div class="field">
+                @Html.LabelFor(m => m.namemoi, new { @class = "label" })
+                @Html.TextBoxFor(m => m.namemoi, new { @class = "input" })
+                @Html.ValidationMessageFor(m => m.namemoi)
+            </div>
+            <div>
+                <button class="button is-primary">Xác Nhận</button>
+            </div> 
+        }
+    </div>
+</section>
